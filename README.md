@@ -3,7 +3,8 @@ Ví dụ trên bạn tạo phụ đề cho video tên d với ngôn ngữ tiến
 - video: duong dan hoac ten file video
 - language: ngon ngu lua chon de xuat subtitle
 - step_time: buoc nhay de cat audio ra de xuat text tu audio
+- noise: chon thuat toan giam nhieu
 ```
-python3 recognize.py -l vi -video d.mp4
+python3 recognize.py -l vi -video d.mp4 -noise deep hoac noise
 ```
 

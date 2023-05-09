@@ -1,4 +1,5 @@
 # nthai: modify 02/05/2023
+# dktoan: modify 09/05/2023 update giam nhieu
 # original soucre: https://github.com/nestyme/Subtitles-generator
 import time
 import scipy.io.wavfile as wavfile
@@ -8,8 +9,12 @@ import librosa
 import argparse
 import os
 from glob import glob
-
+from noisereduce.generate_noise import band_limited_noise
+from regex import F
+from datetime import datetime
+import noisereduce as nr
 import soundfile as sf
+import ffmpeg
 
 def get_arguments():
     parser = argparse.ArgumentParser()
@@ -45,7 +50,7 @@ def recognize(wav_filename, args):
     sf.write('tmp/tmp.wav', data, s)
     y = (np.iinfo(np.int32).max * (data/np.abs(data).max())).astype(np.int32)
     wavfile.write('tmp/tmp_32.wav', s, y)
-    print("lưu okeeeeeee" + wav_filename)
+    
 
     r = sr.Recognizer()
     with sr.AudioFile('tmp/tmp_32.wav') as source:
@@ -62,8 +67,10 @@ def recognize(wav_filename, args):
         os.remove(wav_filename)  
     with open( args.video +'_sub.txt', 'a', encoding='utf-8') as f:
         f.write(' {}'.format(result))
+    print("path wav:" + wav_filename)
+    print("path txt:" +args.video +'_sub.txt')
    #  return result
-
+    
 def get_audio(video):
     os.system('ffmpeg -y  -threads 4 -i {} -f wav -ab 192000 -vn {}'.format(video, 'tmp/current.wav'))
     
@@ -109,14 +116,13 @@ def mp4_to_wav(filename,output,name):
 
 def noise_deepfilternet(file,file_out):
     os.system('deepFilter {} -o {}'.format(file,file_out))
-    print("Đã giảm tiếng ồn DeepFilterNet")
-
+    print('Giảm nhiễu thành công!')
 
 def noise_reduce(file,file_out):
     y, sr = librosa.load(file)
     reduced_noise = nr.reduce_noise(y = y, sr=sr, thresh_n_mult_nonstationary=2,stationary=False)
     sf.write(file_out,reduced_noise, sr, subtype='PCM_24')
-    print('Đã giảm tiếng ồn xong!')
+    print('Giảm nhiễu thành công!')
 
 def rename(filename,newname): 
     os.rename(filename, newname)
@@ -153,38 +159,35 @@ if __name__ == '__main__':
     
     # files = sorted(glob( folder + '/*.wav'))
     files = sorted(glob( folder + '/*.wav'), key = os.path.getmtime)
-    print(files)
     # tao file de luu phu de
+    video_name = os.path.splitext(args.video)[0]
+    args.video = video_name
     open(args.video +'_sub.txt', 'w', encoding = 'utf-8').write('')
     for file in files:
-        print(file)   
-        recognize(file,args)
-        print("okeeeeeee 0")
-
-    noises = args.algorithm_noise
-    if noises:
-        print("okeeeeeee 1")
-        # Giảm nhiễu dùng thuật toán deepfilter
-        if noises == 'deep':
-            # noise_deepfilternet(path+name+'.wav',path)
-            # deep = '_DeepFilterNet2.wav'
-            # rename(path+name+deep,path+newname+'.wav')
-            # wav_to_flac(path+newname+'.wav',path+newname+'.flac')
-            print("deep")
-            pass
-        # Giải thuật giảm nhiễu Noisereduce (không cố định)
-        elif noises == 'noise':
-            # noise_reduce(path+name+'.wav',path+newname+'.wav')
-            # wav_to_flac(path+newname+'.wav',path+newname+'.flac')
-            print("noise")
-        else:
-        # Không chọn giải thuật
-            # rename(path+name+'.wav',path+newname+'.wav')
-            print("no")
-            
-            pass
-    # source = path+newname+'.wav'
-    
+        newfile = file
+        noises = args.algorithm_noise
+        if noises:
+            # Giảm nhiễu dùng thuật toán deepfilter
+            if noises == 'deep':
+                print("Sử dụng thuật toán DeepFilterNet để giảm nhiễu")
+                noise_deepfilternet(file,folder)
+                newfile = folder+'/deep.wav'
+                rename(folder+'/0_DeepFilterNet2.wav',newfile)
+                # wav_to_flac(path+newname+'.wav',path+newname+'.flac')
+                pass
+            # Giải thuật giảm nhiễu Noisereduce (không cố định)
+            elif noises == 'noise':
+                print("Sử dụng thuật toán NoiseReduce để giảm nhiễu")
+                newfile = folder+'/noise.wav'
+                noise_reduce(file,newfile)
+                # wav_to_flac(path+newname+'.wav',path+newname+'.flac')
+            else:
+            # Không chọn giải thuật
+                # rename(path+name+'.wav',path+newname+'.wav')
+                print("Không sử dụng thuật toán giảm nhiễu")
+                pass
+        # source = path+newname+'.wav'
+        recognize(newfile,args)
     end = time.time()
     print('elapsed time: {}'.format(end - start))
     # os.system('rm tmp/*')
