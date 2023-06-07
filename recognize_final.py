@@ -1,7 +1,9 @@
 # nthai: modify 02/05/2023
 # dktoan: modify 09/05/2023 update giam nhieu
 # dktoan: modify 15/05/2023 update phan loai chu de bang underthesea
+# dktoan: modify 03/06/2023 fix bug
 # original soucre: https://github.com/nestyme/Subtitles-generator
+
 import time
 import scipy.io.wavfile as wavfile
 import numpy as np
@@ -9,22 +11,33 @@ import speech_recognition as sr
 import librosa
 import argparse
 import os
+import noisereduce as nr
+import soundfile as sf
+import ffmpeg
+import requests
+import soundfile as sf
+import re
+import sumy_final # sumy_final.py
+from sumy_final import lexrank_summarize
+
+
+
 from glob import glob
 from noisereduce.generate_noise import band_limited_noise
 from regex import F
 from datetime import datetime
-import noisereduce as nr
-import soundfile as sf
-import ffmpeg
 from underthesea import classify
 from langdetect import detect
 from googletrans import Translator
+from gingerit.gingerit import GingerIt
+
+from pyvi import ViTokenizer
+from nltk.tokenize import sent_tokenize
 # text-rank
 from summa import summarizer
 # tách câu
 from pyvi import ViTokenizer
 
-import soundfile as sf
 
 def get_arguments():
     parser = argparse.ArgumentParser()
@@ -38,6 +51,7 @@ def get_arguments():
                         help="---> Chọn thuật toán giảm nhiễu",default="no")
     parser.add_argument('-summary','--algorithm_summary',
                         help="---> Chọn thuật toán dùng để tóm tắt văn bản",default="no")
+    parser.add_argument('-extra_arg', '--extra_argument', help="---> số dòng tóm tắt ", default=None)
     # step_time = 50
     arguments = parser.parse_args()
     return arguments
@@ -61,11 +75,14 @@ def recognize(wav_filename, args):
     except sr.UnknownValueError:
         print("cannot understand audio")
         result = ''
-        os.remove(wav_filename)  
+        
+        # Xóa file wav gốc
+        os.remove(wav_filename)
+ 
     video_name = os.path.splitext(args.video)[0]
     with open( video_name +'_sub.txt', 'a', encoding='utf-8') as f:
         f.write(' {}'.format(result))
-   #  return result
+    # print(result) 
 
 def get_audio(video):
     os.system('ffmpeg -y  -threads 4 -i {} -f wav -ab 192000 -vn {}'.format(video, 'tmp/current.wav'))
@@ -119,6 +136,70 @@ def noise_deepfilternet(file,file_out):
 def rename(filename,newname): 
     os.rename(filename, newname)
 
+def punctuate_text(text, args):
+    # Kiểm tra ngôn ngữ đầu vào
+    translator = Translator()
+    input_lang = translator.detect(text).lang
+
+    # Nếu ngôn ngữ không phải tiếng Anh, dịch sang tiếng Anh
+    if args.language != "en":
+        translation = translator.translate(text, src=input_lang, dest="en")
+        text = translation.text
+
+    # Gọi API add các dấu chấm câu
+    url = "http://bark.phon.ioc.ee/punctuator"
+    payload = {"text": text}
+    response = requests.post(url, data=payload)
+    result = response.text.strip()
+
+    # Nếu ngôn ngữ đầu vào không phải tiếng Anh, dịch kết quả về ngôn ngữ gốc
+    # if input_lang != "en":
+    #     translation = translator.translate(result, src="en", dest=input_lang)
+    #     result = translation.text
+
+    result = re.sub(r'\s+', ' ', result)
+    # Thêm dấu chấm sau câu cuối cùng
+    # result = re.sub(r'(\S)(\s*$)', r'\1.', result)
+    # Đảm bảo sau dấu chấm luôn có một khoảng trắng
+    result = re.sub(r'(\.)(\S)', r'\1 \2', result)
+    parser = GingerIt()
+    corrected_text = ''
+    sentences = result.split('. ')
+    for sentence in sentences:
+        result = parser.parse(sentence)
+        corrected_text += result['result'] + '. '
+    # Xử lý dấu chấm câu
+    sentences = sent_tokenize(corrected_text)
+    # Xử lý chính tả cho mỗi câu
+    corrected_sentences = []
+    for sentence in sentences:
+        corrected_sentence = ViTokenizer.tokenize(sentence)
+        corrected_sentences.append(corrected_sentence)
+    
+    filepath = os.path.splitext(args.video)[0]
+    with open( filepath +'_'+args.language+'_'+args.algorithm_summary+'_processed_text.txt', 'a', encoding='utf-8') as file:
+        for sentence in corrected_sentences:
+            file.write(sentence + '\n')
+    return filepath +'_'+args.language+'_'+args.algorithm_summary+'_processed_text.txt'
+
+def get_topic(text):
+    translator = Translator()
+    # Kiểm tra ngôn ngữ của text
+    if detect(text) == 'vi':
+        text_trans = text
+    else:
+        # Dịch sang Tiếng Việt nếu đoạn văn bản không phải Tiếng Việt
+        text_trans = translator.translate(text, dest='vi').text
+        with open(video_name + '_sub_vi.txt', 'w', encoding='utf-8') as f:
+            f.write(text_trans)
+        if os.path.exists(video_name + '_sub_vi.txt'):
+            print("Save the sub-vi file successfully")
+        else:
+            print("Save the sub-vi file failed") 
+    topic = '_'.join(classify(text))
+    return topic
+
+
 if __name__ == '__main__':
     from time import gmtime, strftime
     time_text = str(strftime("%Y%m%d_%H%M%S", gmtime())) 
@@ -144,15 +225,14 @@ if __name__ == '__main__':
     # files = sorted(glob( folder + '/*.wav'))
     files = sorted(glob( folder + '/*.wav'), key = os.path.getmtime)
     print(files)
-
     # tao file de luu phu de
-    open(args.video +'_sub.txt', 'w', encoding = 'utf-8').write('')
+    video_name = os.path.splitext(args.video)[0]
+    open(video_name +'_sub.txt', 'w', encoding = 'utf-8').write('')
     noises = args.algorithm_noise
     if noises:
         # Giảm nhiễu dùng thuật toán deepfilter
         if noises == 'deep':
             print("Sử dụng thuật toán DeepFilterNet để giảm nhiễu")
-            path="data/"
             for file in files:
                 path = file[:file.rindex('/') + 1]
                 nameFile = file[file.rindex('/') + 1:file.rindex('.')]
@@ -160,6 +240,7 @@ if __name__ == '__main__':
                 rename(path+nameFile+'_DeepFilterNet2.wav',file)
             for file in files:
                 recognize(file,args)
+
             pass
         # Giải thuật giảm nhiễu Noisereduce (không cố định)
         elif noises == 'noise':
@@ -174,8 +255,31 @@ if __name__ == '__main__':
             print("Không sử dụng thuật toán giảm nhiễu")
             for file in files:
                 recognize(file,args)
+            
             pass
     
     end = time.time()
+    video_name = os.path.splitext(args.video)[0]
+    file_path = video_name + '_sub.txt'
+
+    # Mở tệp tin và gán nội dung cho biến text
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+        sumamary = args.algorithm_summary
+        if sumamary:
+            if sumamary == 'lexrank':
+                print('Using lexRank')  
+                path_processed_text = punctuate_text(text, args)
+                result_summary = lexrank_summarize(path_processed_text, args.extra_argument)
+                print('result_summary')
+                print(result_summary)
+            elif sumamary == 'textrank':
+                print('Using textRank')  
+                path_processed_text = punctuate_text(text, args)
+            else:
+                print('khong sd thuat toan tom tat')  
+
+    topic = get_topic(text)
+    print('Chu de cua video la :',topic)
     print('elapsed time: {}'.format(end - start))
     # os.system('rm tmp/*')
