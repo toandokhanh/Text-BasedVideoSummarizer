@@ -19,6 +19,11 @@ import soundfile as sf
 import re
 import sumy_final # sumy_final.py
 from sumy_final import lexrank_summarize
+from sumy_final import textrank_summarize
+from sumy_final import lsa_summarize
+from sumy_final import luhn_summarize
+from sumy_final import edmundson_summarize
+from sumy_final import random_summarize
 
 
 
@@ -51,7 +56,7 @@ def get_arguments():
                         help="---> Chọn thuật toán giảm nhiễu",default="no")
     parser.add_argument('-summary','--algorithm_summary',
                         help="---> Chọn thuật toán dùng để tóm tắt văn bản",default="no")
-    parser.add_argument('-extra_arg', '--extra_argument', help="---> số dòng tóm tắt ", default=None)
+    parser.add_argument('-sentence', '--extra_argument', help="---> số dòng tóm tắt ", default=None)
     # step_time = 50
     arguments = parser.parse_args()
     return arguments
@@ -139,11 +144,11 @@ def rename(filename,newname):
 def punctuate_text(text, args):
     # Kiểm tra ngôn ngữ đầu vào
     translator = Translator()
-    input_lang = translator.detect(text).lang
+    # input_lang = translator.detect(text).lang
 
     # Nếu ngôn ngữ không phải tiếng Anh, dịch sang tiếng Anh
     if args.language != "en":
-        translation = translator.translate(text, src=input_lang, dest="en")
+        translation = translator.translate(text, src=args.language, dest="en")
         text = translation.text
 
     # Gọi API add các dấu chấm câu
@@ -156,7 +161,8 @@ def punctuate_text(text, args):
     # if input_lang != "en":
     #     translation = translator.translate(result, src="en", dest=input_lang)
     #     result = translation.text
-
+    if '_' in result:
+        result = result.replace('_', ' ')
     result = re.sub(r'\s+', ' ', result)
     # Thêm dấu chấm sau câu cuối cùng
     # result = re.sub(r'(\S)(\s*$)', r'\1.', result)
@@ -177,10 +183,10 @@ def punctuate_text(text, args):
         corrected_sentences.append(corrected_sentence)
     
     filepath = os.path.splitext(args.video)[0]
-    with open( filepath +'_'+args.language+'_'+args.algorithm_summary+'_processed_text.txt', 'a', encoding='utf-8') as file:
+    with open( filepath +'_'+args.algorithm_summary+'_processed_text.txt', 'a', encoding='utf-8') as file:
         for sentence in corrected_sentences:
             file.write(sentence + '\n')
-    return filepath +'_'+args.language+'_'+args.algorithm_summary+'_processed_text.txt'
+    return filepath +'_'+args.algorithm_summary+'_processed_text.txt'
 
 def get_topic(text):
     translator = Translator()
@@ -199,6 +205,23 @@ def get_topic(text):
     topic = '_'.join(classify(text))
     return topic
 
+def save_result_to_file(result, args):
+    file_path = os.path.splitext(args.video)[0] #data/video
+    result_str = '\n'.join(result)  # Chuyển đổi danh sách thành chuỗi, mỗi phần tử trên một dòng
+    # Chỉnh sửa lỗi chính tả
+    result_str_corrected = result_str.replace('Vietnam ,', 'Vietnam,')
+
+    # Xóa khoảng trắng trước dấu chấm và dấu phẩy
+    result_str_without_spaces = re.sub(r'\s+([.,])', r'\1', result_str_corrected)
+
+    # Dịch sang tiếng Việt
+    translator = Translator()
+    result_str_translated = translator.translate(result_str_without_spaces, dest='vi').text
+    if '_' in result_str_translated:
+        result_str_translated = result_str_translated.replace('_', ' ')
+    with open(file_path +'_'+args.language+'_summary_'+args.algorithm_summary+'.txt', 'w', encoding='utf-8') as file:
+        file.write(result_str_translated)
+    print(f"File summary at {file_path +'_'+args.language+'_summary_'+args.algorithm_summary+'.txt',} successfully saved")
 
 if __name__ == '__main__':
     from time import gmtime, strftime
@@ -232,7 +255,7 @@ if __name__ == '__main__':
     if noises:
         # Giảm nhiễu dùng thuật toán deepfilter
         if noises == 'deep':
-            print("Sử dụng thuật toán DeepFilterNet để giảm nhiễu")
+            print("Use DeepFilterNet")
             for file in files:
                 path = file[:file.rindex('/') + 1]
                 nameFile = file[file.rindex('/') + 1:file.rindex('.')]
@@ -244,7 +267,7 @@ if __name__ == '__main__':
             pass
         # Giải thuật giảm nhiễu Noisereduce (không cố định)
         elif noises == 'noise':
-            print("Sử dụng thuật toán NoiseReduce để giảm nhiễu")
+            print("Use NoiseReduce")
             for file in files:
                 noise_reduce(file,file)
             for file in files:
@@ -252,7 +275,7 @@ if __name__ == '__main__':
         else:
         # Không chọn giải thuật
             # rename(path+name+'.wav',path+newname+'.wav')
-            print("Không sử dụng thuật toán giảm nhiễu")
+            print("Do not use reduce_noise algorithm")
             for file in files:
                 recognize(file,args)
             
@@ -268,18 +291,39 @@ if __name__ == '__main__':
         sumamary = args.algorithm_summary
         if sumamary:
             if sumamary == 'lexrank':
-                print('Using lexRank')  
+                print('Use lexRank')  
                 path_processed_text = punctuate_text(text, args)
-                result_summary = lexrank_summarize(path_processed_text, args.extra_argument)
-                print('result_summary')
-                print(result_summary)
+                result_lexrank = lexrank_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_lexrank, args)
             elif sumamary == 'textrank':
-                print('Using textRank')  
+                print('Use textRank')  
                 path_processed_text = punctuate_text(text, args)
+                result_textrank = textrank_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_textrank, args)
+            elif sumamary == 'lsa':
+                print('Use LSA')  
+                path_processed_text = punctuate_text(text, args)
+                result_lsa = lsa_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_lsa, args)
+            elif sumamary == 'luhn':
+                print('Use LUHN')  
+                path_processed_text = punctuate_text(text, args)
+                result_luhn = luhn_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_luhn, args)
+            elif sumamary == 'edmundson':
+                print('Use edmundson')  
+                path_processed_text = punctuate_text(text, args)
+                result_edmundson = edmundson_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_edmundson, args)
+            elif sumamary == 'random':
+                print('Use random')  
+                path_processed_text = punctuate_text(text, args)
+                result_random = random_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_random, args)
             else:
-                print('khong sd thuat toan tom tat')  
+                print('Do not use summary algorithm')  
 
     topic = get_topic(text)
-    print('Chu de cua video la :',topic)
+    print('The topic of the video is :',topic)
     print('elapsed time: {}'.format(end - start))
     # os.system('rm tmp/*')
