@@ -132,11 +132,11 @@ def noise_reduce(file,file_out):
     y, sr = librosa.load(file)
     reduced_noise = nr.reduce_noise(y = y, sr=sr, thresh_n_mult_nonstationary=2,stationary=False)
     sf.write(file_out,reduced_noise, sr, subtype='PCM_24')
-    print('Giảm nhiễu với thuật toán noise_reduce thành công!')
+    print('Đang giảm nhiễu với thuật toán noise_reduce!')
 
 def noise_deepfilternet(file,file_out):
     os.system('deepFilter {} -o {}'.format(file,file_out))
-    print('Giảm nhiễu với thuật toán noise_deepfilternet thành công!')
+    print('Đang giảm nhiễu với thuật toán noise_deepfilternet!')
 
 def rename(filename,newname): 
     os.rename(filename, newname)
@@ -148,8 +148,11 @@ def punctuate_text(text, args):
 
     # Nếu ngôn ngữ không phải tiếng Anh, dịch sang tiếng Anh
     if args.language != "en":
-        translation = translator.translate(text, src=args.language, dest="en")
-        text = translation.text
+        # translation = translator.translate(text, src=args.language, dest="en")
+        # text = translation.text
+        translated_text = translate_text(text, src=args.language, dest="en")
+        text = translated_text.replace(",", " ").replace(".", " ")
+        
 
     # Gọi API add các dấu chấm câu
     url = "http://bark.phon.ioc.ee/punctuator"
@@ -157,10 +160,6 @@ def punctuate_text(text, args):
     response = requests.post(url, data=payload)
     result = response.text.strip()
 
-    # Nếu ngôn ngữ đầu vào không phải tiếng Anh, dịch kết quả về ngôn ngữ gốc
-    # if input_lang != "en":
-    #     translation = translator.translate(result, src="en", dest=input_lang)
-    #     result = translation.text
     if '_' in result:
         result = result.replace('_', ' ')
     result = re.sub(r'\s+', ' ', result)
@@ -168,23 +167,23 @@ def punctuate_text(text, args):
     # result = re.sub(r'(\S)(\s*$)', r'\1.', result)
     # Đảm bảo sau dấu chấm luôn có một khoảng trắng
     result = re.sub(r'(\.)(\S)', r'\1 \2', result)
-    parser = GingerIt()
-    corrected_text = ''
-    sentences = result.split('. ')
-    for sentence in sentences:
-        result = parser.parse(sentence)
-        corrected_text += result['result'] + '. '
+    # parser = GingerIt()
+    # corrected_text = ''
+    # sentences = result.split('. ')
+    # for sentence in sentences:
+    #     result = parser.parse(sentence)
+    #     corrected_text += result['result'] + '. '
     # Xử lý dấu chấm câu
-    sentences = sent_tokenize(corrected_text)
+    sentences = sent_tokenize(result)
     # Xử lý chính tả cho mỗi câu
-    corrected_sentences = []
-    for sentence in sentences:
-        corrected_sentence = ViTokenizer.tokenize(sentence)
-        corrected_sentences.append(corrected_sentence)
+    # corrected_sentences = []
+    # for sentence in sentences:
+    #     corrected_sentence = ViTokenizer.tokenize(sentence)
+    #     corrected_sentences.append(corrected_sentence)
     
     filepath = os.path.splitext(args.video)[0]
     with open( filepath +'_'+args.algorithm_summary+'_processed_text.txt', 'a', encoding='utf-8') as file:
-        for sentence in corrected_sentences:
+        for sentence in sentences:
             file.write(sentence + '\n')
     return filepath +'_'+args.algorithm_summary+'_processed_text.txt'
 
@@ -213,15 +212,28 @@ def save_result_to_file(result, args):
 
     # Xóa khoảng trắng trước dấu chấm và dấu phẩy
     result_str_without_spaces = re.sub(r'\s+([.,])', r'\1', result_str_corrected)
-
-    # Dịch sang tiếng Việt
-    translator = Translator()
-    result_str_translated = translator.translate(result_str_without_spaces, dest='vi').text
+    result_str_translated = translate_text(result_str_without_spaces, src="en", dest="vi")
     if '_' in result_str_translated:
         result_str_translated = result_str_translated.replace('_', ' ')
     with open(file_path +'_'+args.language+'_summary_'+args.algorithm_summary+'.txt', 'w', encoding='utf-8') as file:
         file.write(result_str_translated)
     print(f"File summary at {file_path +'_'+args.language+'_summary_'+args.algorithm_summary+'.txt',} successfully saved")
+
+
+def translate_text(text, src, dest):
+    translator = Translator()
+    chunk_size = 5000  # Kích thước mỗi phần nhỏ (giới hạn của Google Translate API)
+    chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
+    translated_chunks = []
+
+    for chunk in chunks:
+        translation = translator.translate(chunk, src=src, dest=dest)
+        translated_chunks.append(translation.text)
+
+    translated_text = ' '.join(translated_chunks)
+    return translated_text
+
+
 
 if __name__ == '__main__':
     from time import gmtime, strftime
