@@ -2,6 +2,8 @@
 # dktoan: modify 09/05/2023 update giam nhieu
 # dktoan: modify 15/05/2023 update phan loai chu de bang underthesea
 # dktoan: modify 03/06/2023 fix bug
+# dktoan: modify 07/06/2023 update cac giai thuat tom tat 
+# dktoan: modify 08/06/2023 fix bug google_translate 
 # original soucre: https://github.com/nestyme/Subtitles-generator
 
 import time
@@ -24,9 +26,8 @@ from sumy_final import lsa_summarize
 from sumy_final import luhn_summarize
 from sumy_final import edmundson_summarize
 from sumy_final import random_summarize
-
-
-
+from sumy_final import reduction_summarize
+from sumy_final import kl_summarize
 from glob import glob
 from noisereduce.generate_noise import band_limited_noise
 from regex import F
@@ -332,6 +333,16 @@ if __name__ == '__main__':
                 path_processed_text = punctuate_text(text, args)
                 result_random = random_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_random, args)
+            elif sumamary == 'kl':
+                print('Use KL-sum')  
+                path_processed_text = punctuate_text(text, args)
+                result_kl = kl_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_kl, args)
+            elif sumamary == 'reduction':
+                print('Use reduction')  
+                path_processed_text = punctuate_text(text, args)
+                result_reduction = reduction_summarize(path_processed_text, args.extra_argument)
+                save_result_to_file(result_reduction, args)
             else:
                 print('Do not use summary algorithm')  
 

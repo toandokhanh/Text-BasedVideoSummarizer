@@ -5,6 +5,8 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.luhn import LuhnSummarizer
 from sumy.summarizers.edmundson import EdmundsonSummarizer
 from sumy.summarizers.random import RandomSummarizer
+from sumy.summarizers.reduction import ReductionSummarizer
+from sumy.summarizers.kl import KLSummarizer
 
 def lexrank_summarize(file_path, num_sentences):
     with open(file_path, 'r') as file:
@@ -58,3 +60,21 @@ def random_summarize(file_path, num_sentences):
     summarizer = RandomSummarizer()
     summary = summarizer(parser.document, num_sentences)
     return [str(sentence) for sentence in summary]
+
+
+def reduction_summarize(file_path, num_sentences):
+    with open(file_path, 'r') as file:
+        text = file.read()
+    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    summarizer = ReductionSummarizer()
+    summary = summarizer(parser.document, num_sentences)
+    return [str(sentence) for sentence in summary]
+
+def kl_summarize(file_path, num_sentences):
+    with open(file_path, 'r') as file:
+        text = file.read()
+    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    summarizer = KLSummarizer()
+    summary = summarizer(parser.document, num_sentences)
+    return [str(sentence) for sentence in summary]
+
