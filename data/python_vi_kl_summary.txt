@@ -1,0 +1,2 @@
+Khuôn mặt trên vai của Chúa tiếp theo là chúng ta sẽ phải viết một tập tin để xác định khuôn mặt trên webcam với chúng tôi.
+Chúng tôi sẽ đến dữ liệu.

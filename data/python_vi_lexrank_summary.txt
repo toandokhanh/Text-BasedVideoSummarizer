@@ -1,0 +1,2 @@
+Tôi sẽ đưa nó vào bên trong với tốc độ điều chỉnh khuôn mặt của tôi và tôi sẽ hiển thị trục và tối đa 200 ảnh để tôi chỉ có dữ liệu và tôi chỉ cần xác định khuôn mặt của mình sau đó chúng tôi sẽ chạy lại tệp này trong khi chạy tệp này.
+Tôi sẽ, nếu nó xác định khuôn mặt của tôi, tôi sẽ viết tắt nó cho nó.
