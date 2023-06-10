@@ -1,0 +1,2 @@
+Chúng tôi sẽ xác định khuôn mặt của chúng tôi trên webcam của Orange Juice và chúng tôi sẽ chụp ảnh để chụp ảnh với việc tạo tệp dữ liệu với tên được lưu, vì người dùng đã đánh dấu với ID cộng với số lượng hình ảnh.
+Tôi sẽ vào ID để tuổi và giới tính của tôi sau khi nhập khi tôi hoàn thành, tôi phải chạy nó và tôi sẽ điều chỉnh các góc mặt của mình để nó có thể lấy tất cả khuôn mặt của tôi để nó có thể đi nhiều nhấtDễ dàng xác định khuôn mặt của tôi, sau khi sau khi chụp tôi sẽ tự động tắt.

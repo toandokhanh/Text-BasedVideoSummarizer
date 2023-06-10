@@ -7,6 +7,7 @@ from sumy.summarizers.edmundson import EdmundsonSummarizer
 from sumy.summarizers.random import RandomSummarizer
 from sumy.summarizers.reduction import ReductionSummarizer
 from sumy.summarizers.kl import KLSummarizer
+from googletrans import Translator
 
 def lexrank_summarize(file_path, num_sentences):
     with open(file_path, 'r') as file:
@@ -78,3 +79,26 @@ def kl_summarize(file_path, num_sentences):
     summary = summarizer(parser.document, num_sentences)
     return [str(sentence) for sentence in summary]
 
+def translate_text(text, src, dest):
+    translator = Translator()
+    chunk_size = 5000  # Kích thước mỗi phần nhỏ (giới hạn của Google Translate API)
+    chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
+    translated_chunks = []
+
+    for chunk in chunks:
+        translation = translator.translate(chunk, src=src, dest=dest)
+        translated_chunks.append(translation.text)
+
+    translated_text = ' '.join(translated_chunks)
+    return translated_text
+
+# lexrank_summarize = lexrank_summarize('data/noise_reduction_processed_text.txt',2)
+# print('lexrank_summarize: ',lexrank_summarize)
+# result_str = '\n'.join(lexrank_summarize)
+# print('result_str: ',result_str)
+# # text = result_str.replace(",", " ").replace(".", " ")
+# text = result_str
+# print('text: ',text)
+# translator = Translator()
+# translated_text = translate_text(text, src='en', dest='vi')
+# print('translated_text: ',translated_text)

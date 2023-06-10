@@ -32,18 +32,12 @@ from glob import glob
 from noisereduce.generate_noise import band_limited_noise
 from regex import F
 from datetime import datetime
-from underthesea import classify
+from underthesea import classify #topic videos
 from langdetect import detect
 from googletrans import Translator
 from gingerit.gingerit import GingerIt
-
 from pyvi import ViTokenizer
 from nltk.tokenize import sent_tokenize
-# text-rank
-from summa import summarizer
-# tách câu
-from pyvi import ViTokenizer
-
 
 def get_arguments():
     parser = argparse.ArgumentParser()
@@ -86,7 +80,7 @@ def recognize(wav_filename, args):
         os.remove(wav_filename)
  
     video_name = os.path.splitext(args.video)[0]
-    with open( video_name +'_sub.txt', 'a', encoding='utf-8') as f:
+    with open( video_name +'_'+args.language+ '.txt', 'a', encoding='utf-8') as f:
         f.write(' {}'.format(result))
     # print(result) 
 
@@ -196,7 +190,7 @@ def get_topic(text):
     else:
         # Dịch sang Tiếng Việt nếu đoạn văn bản không phải Tiếng Việt
         text_trans = translator.translate(text, dest='vi').text
-        with open(video_name + '_sub_vi.txt', 'w', encoding='utf-8') as f:
+        with open(video_name +'_'+args.language+'_vi.txt', 'w', encoding='utf-8') as f:
             f.write(text_trans)
         if os.path.exists(video_name + '_sub_vi.txt'):
             print("Save the sub-vi file successfully")
@@ -216,9 +210,9 @@ def save_result_to_file(result, args):
     result_str_translated = translate_text(result_str_without_spaces, src="en", dest="vi")
     if '_' in result_str_translated:
         result_str_translated = result_str_translated.replace('_', ' ')
-    with open(file_path +'_'+args.language+'_summary_'+args.algorithm_summary+'.txt', 'w', encoding='utf-8') as file:
+    with open(file_path +'_'+args.language+'_'+args.algorithm_summary+'_summary.txt', 'w', encoding='utf-8') as file:
         file.write(result_str_translated)
-    print(f"File summary at {file_path +'_'+args.language+'_summary_'+args.algorithm_summary+'.txt',} successfully saved")
+    print(f"File summary at {file_path +'_'+args.language+'_'+args.algorithm_summary+'_summary.txt',} successfully saved")
 
 
 def translate_text(text, src, dest):
@@ -263,7 +257,7 @@ if __name__ == '__main__':
     print(files)
     # tao file de luu phu de
     video_name = os.path.splitext(args.video)[0]
-    open(video_name +'_sub.txt', 'w', encoding = 'utf-8').write('')
+    open(video_name +'_'+args.language+'.txt', 'w', encoding = 'utf-8').write('')
     noises = args.algorithm_noise
     if noises:
         # Giảm nhiễu dùng thuật toán deepfilter
@@ -296,7 +290,7 @@ if __name__ == '__main__':
     
     end = time.time()
     video_name = os.path.splitext(args.video)[0]
-    file_path = video_name + '_sub.txt'
+    file_path = video_name +'_'+args.language+'.txt'
 
     # Mở tệp tin và gán nội dung cho biến text
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -304,7 +298,6 @@ if __name__ == '__main__':
         sumamary = args.algorithm_summary
         if sumamary:
             if sumamary == 'lexrank':
-                print('Use lexRank')  
                 path_processed_text = punctuate_text(text, args)
                 result_lexrank = lexrank_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_lexrank, args)
@@ -314,7 +307,7 @@ if __name__ == '__main__':
                 result_textrank = textrank_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_textrank, args)
             elif sumamary == 'lsa':
-                print('Use LSA')  
+                print('Use LSA')
                 path_processed_text = punctuate_text(text, args)
                 result_lsa = lsa_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_lsa, args)
@@ -324,7 +317,7 @@ if __name__ == '__main__':
                 result_luhn = luhn_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_luhn, args)
             elif sumamary == 'edmundson':
-                print('Use edmundson')  
+                print('Use Edmundson')
                 path_processed_text = punctuate_text(text, args)
                 result_edmundson = edmundson_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_edmundson, args)
@@ -344,7 +337,8 @@ if __name__ == '__main__':
                 result_reduction = reduction_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_reduction, args)
             else:
-                print('Do not use summary algorithm')  
+                print('Do not use summary algorithm') 
+                 
 
     topic = get_topic(text)
     print('The topic of the video is :',topic)
