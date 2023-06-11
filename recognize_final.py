@@ -38,6 +38,12 @@ from googletrans import Translator
 from gingerit.gingerit import GingerIt
 from pyvi import ViTokenizer
 from nltk.tokenize import sent_tokenize
+import handle_save_log #handle_save_log.py
+from handle_save_log import read_video_info
+from handle_save_log import count_sentence
+import accuracy
+from accuracy import calculate_ROUGE
+
 
 def get_arguments():
     parser = argparse.ArgumentParser()
@@ -80,7 +86,7 @@ def recognize(wav_filename, args):
         os.remove(wav_filename)
  
     video_name = os.path.splitext(args.video)[0]
-    with open( video_name +'_'+args.language+ '.txt', 'a', encoding='utf-8') as f:
+    with open( video_name +'_'+args.language+ '.txt', 'w', encoding='utf-8') as f:
         f.write(' {}'.format(result))
     # print(result) 
 
@@ -140,14 +146,15 @@ def punctuate_text(text, args):
     # Kiểm tra ngôn ngữ đầu vào
     translator = Translator()
     # input_lang = translator.detect(text).lang
-
+    filepath = os.path.splitext(args.video)[0]
     # Nếu ngôn ngữ không phải tiếng Anh, dịch sang tiếng Anh
     if args.language != "en":
         # translation = translator.translate(text, src=args.language, dest="en")
         # text = translation.text
         translated_text = translate_text(text, src=args.language, dest="en")
         text = translated_text.replace(",", " ").replace(".", " ")
-        
+        with open(filepath+'_en.txt', 'w', encoding='utf-8') as file:
+            file.write(text)
 
     # Gọi API add các dấu chấm câu
     url = "http://bark.phon.ioc.ee/punctuator"
@@ -176,11 +183,10 @@ def punctuate_text(text, args):
     #     corrected_sentence = ViTokenizer.tokenize(sentence)
     #     corrected_sentences.append(corrected_sentence)
     
-    filepath = os.path.splitext(args.video)[0]
-    with open( filepath +'_'+args.algorithm_summary+'_processed_text.txt', 'a', encoding='utf-8') as file:
+    with open( filepath +'_en_processed_text'+'.txt', 'w', encoding='utf-8') as file:
         for sentence in sentences:
             file.write(sentence + '\n')
-    return filepath +'_'+args.algorithm_summary+'_processed_text.txt'
+    return filepath +'_en_processed_text'+'.txt'
 
 def get_topic(text):
     translator = Translator()
@@ -207,6 +213,9 @@ def save_result_to_file(result, args):
 
     # Xóa khoảng trắng trước dấu chấm và dấu phẩy
     result_str_without_spaces = re.sub(r'\s+([.,])', r'\1', result_str_corrected)
+    with open(file_path +'_en_processed_text_'+args.algorithm_summary+'_summary.txt', 'w', encoding='utf-8') as file:
+        file.write(result_str_without_spaces)
+        # video_name+'_en_processed_text'+'.txt'
     result_str_translated = translate_text(result_str_without_spaces, src="en", dest="vi")
     if '_' in result_str_translated:
         result_str_translated = result_str_translated.replace('_', ' ')
@@ -288,13 +297,14 @@ if __name__ == '__main__':
             
             pass
     
-    end = time.time()
+    
     video_name = os.path.splitext(args.video)[0]
     file_path = video_name +'_'+args.language+'.txt'
 
     # Mở tệp tin và gán nội dung cho biến text
     with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read()
+        topic = get_topic(text)
         sumamary = args.algorithm_summary
         if sumamary:
             if sumamary == 'lexrank':
@@ -340,7 +350,35 @@ if __name__ == '__main__':
                 print('Do not use summary algorithm') 
                  
 
-    topic = get_topic(text)
     print('The topic of the video is :',topic)
+    end = time.time()
+    history_file = 'result/history.txt'
+    if args.algorithm_summary == 'no':
+        path_processed_text = 'None, None, None'
+        path_processed_summary_text = 'None, None, None'
+    else:    
+        # day là file text đã xử lý (gốc)
+        path_processed_text = video_name+'_en_processed_text'+'.txt'
+        count_sentence_processed_text = count_sentence(path_processed_text)
+        path_processed_text = path_processed_text+', '+count_sentence_processed_text
+        # day là file tóm tắt dùng để so sash với file gốc
+        path_processed_summary_text = video_name +'_en_processed_text_'+args.algorithm_summary+'_summary.txt'
+        count_sentence_summary_text = count_sentence(path_processed_summary_text)
+        path_processed_summary_text = path_processed_summary_text+', '+count_sentence_summary_text
+        # goi ham để tính độ chính xác
+        rouge_1_recall, rouge_1_precision, rouge_1_f1, rouge_2_recall, rouge_2_precision, rouge_2_f1, rouge_l_recall, rouge_l_precision, rouge_l_f1 = calculate_ROUGE(video_name+'_en_processed_text'+'.txt', video_name +'_en_processed_text_'+args.algorithm_summary+'_summary.txt')
+
+    if os.path.exists(history_file):
+        with open(history_file, 'a') as file:
+            count_sentence = count_sentence(video_name+'_en.txt')
+            read_video_info = read_video_info(args.video)
+            content = folder+', '+args.video+', '+read_video_info+', '+args.language+', '+file_path+', '+count_sentence+', '+path_processed_text+', '+path_processed_summary_text+', '+args.algorithm_noise+', '+args.algorithm_summary+', '+args.extra_argument +', '+format(end - start)+', '+topic+', '+rouge_1_recall+', '+rouge_1_precision+', '+rouge_1_f1+', '+rouge_2_recall+', '+rouge_2_precision+', '+rouge_2_f1+', '+rouge_l_recall+', '+rouge_l_precision+', '+rouge_l_f1
+            # print(content)print("Recall:", rouge_1_recall)
+            # print("Precision:", rouge_1_precision)
+            # print("F1-score:", rouge_1_f1)
+            file.write(f'{content} \n')
+
+    # Đã lưu lịch sử chạy code thành công
+    
     print('elapsed time: {}'.format(end - start))
     # os.system('rm tmp/*')
