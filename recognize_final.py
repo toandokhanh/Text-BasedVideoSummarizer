@@ -63,6 +63,7 @@ def get_arguments():
     return arguments
 
 def recognize(wav_filename, args):
+    
     data, s = librosa.load(wav_filename)
     # librosa.output.write_wav('tmp.wav', data, s)
     sf.write('tmp/tmp.wav', data, s)
@@ -81,14 +82,12 @@ def recognize(wav_filename, args):
     except sr.UnknownValueError:
         print("cannot understand audio")
         result = ''
-        
-        # Xóa file wav gốc
         os.remove(wav_filename)
- 
     video_name = os.path.splitext(args.video)[0]
-    with open( video_name +'_'+args.language+ '.txt', 'w', encoding='utf-8') as f:
+    with open( video_name +'_'+args.language+ '.txt', 'a', encoding='utf-8') as f:
         f.write(' {}'.format(result))
-    # print(result) 
+    # print(result)
+    
 
 def get_audio(video):
     os.system('ffmpeg -y  -threads 4 -i {} -f wav -ab 192000 -vn {}'.format(video, 'tmp/current.wav'))
@@ -143,9 +142,7 @@ def rename(filename,newname):
     os.rename(filename, newname)
 
 def punctuate_text(text, args):
-    # Kiểm tra ngôn ngữ đầu vào
     translator = Translator()
-    # input_lang = translator.detect(text).lang
     filepath = os.path.splitext(args.video)[0]
     # Nếu ngôn ngữ không phải tiếng Anh, dịch sang tiếng Anh
     if args.language != "en":
@@ -190,19 +187,17 @@ def punctuate_text(text, args):
 
 def get_topic(text):
     translator = Translator()
-    # Kiểm tra ngôn ngữ của text
-    if detect(text) == 'vi':
+    if args.language == 'vi':
         text_trans = text
     else:
-        # Dịch sang Tiếng Việt nếu đoạn văn bản không phải Tiếng Việt
-        text_trans = translator.translate(text, dest='vi').text
+        text_trans = translate_text(text, args.language, 'vi')
         with open(video_name +'_'+args.language+'_vi.txt', 'w', encoding='utf-8') as f:
             f.write(text_trans)
-        if os.path.exists(video_name + '_sub_vi.txt'):
+        if os.path.exists(video_name +'_'+args.language+'_vi.txt'):
             print("Save the sub-vi file successfully")
         else:
             print("Save the sub-vi file failed") 
-    topic = '_'.join(classify(text))
+    topic = '_'.join(classify(text_trans))
     return topic
 
 def save_result_to_file(result, args):
@@ -210,12 +205,10 @@ def save_result_to_file(result, args):
     result_str = '\n'.join(result)  # Chuyển đổi danh sách thành chuỗi, mỗi phần tử trên một dòng
     # Chỉnh sửa lỗi chính tả
     result_str_corrected = result_str.replace('Vietnam ,', 'Vietnam,')
-
-    # Xóa khoảng trắng trước dấu chấm và dấu phẩy
     result_str_without_spaces = re.sub(r'\s+([.,])', r'\1', result_str_corrected)
     with open(file_path +'_en_processed_text_'+args.algorithm_summary+'_summary.txt', 'w', encoding='utf-8') as file:
         file.write(result_str_without_spaces)
-        # video_name+'_en_processed_text'+'.txt'
+    #sau khi lưu text đã tóm tắt (en) xong thì dịch sang tiếng việt
     result_str_translated = translate_text(result_str_without_spaces, src="en", dest="vi")
     if '_' in result_str_translated:
         result_str_translated = result_str_translated.replace('_', ' ')
@@ -236,8 +229,6 @@ def translate_text(text, src, dest):
 
     translated_text = ' '.join(translated_chunks)
     return translated_text
-
-
 
 if __name__ == '__main__':
     from time import gmtime, strftime
@@ -266,36 +257,40 @@ if __name__ == '__main__':
     print(files)
     # tao file de luu phu de
     video_name = os.path.splitext(args.video)[0]
-    open(video_name +'_'+args.language+'.txt', 'w', encoding = 'utf-8').write('')
-    noises = args.algorithm_noise
-    if noises:
-        # Giảm nhiễu dùng thuật toán deepfilter
-        if noises == 'deep':
-            print("Use DeepFilterNet")
-            for file in files:
-                path = file[:file.rindex('/') + 1]
-                nameFile = file[file.rindex('/') + 1:file.rindex('.')]
-                noise_deepfilternet(file,path)
-                rename(path+nameFile+'_DeepFilterNet2.wav',file)
-            for file in files:
-                recognize(file,args)
-
-            pass
-        # Giải thuật giảm nhiễu Noisereduce (không cố định)
-        elif noises == 'noise':
-            print("Use NoiseReduce")
-            for file in files:
-                noise_reduce(file,file)
-            for file in files:
-                recognize(file,args)
-        else:
-        # Không chọn giải thuật
-            # rename(path+name+'.wav',path+newname+'.wav')
-            print("Do not use reduce_noise algorithm")
-            for file in files:
-                recognize(file,args)
-            
-            pass
+    if os.path.exists(video_name + '_' + args.language + '.txt'):
+        print('ton tai file'+video_name + '_' + args.language + '.txt')
+    else:
+        print('k tai file'+video_name + '_' + args.language + '.txt')
+        open(video_name+'_'+args.language+'.txt', 'w', encoding = 'utf-8').write('')
+        noises = args.algorithm_noise
+        if noises:
+            # Giảm nhiễu dùng thuật toán deepfilter
+            if noises == 'deep':
+                print("Use DeepFilterNet")
+                for file in files:
+                    path = file[:file.rindex('/') + 1]
+                    nameFile = file[file.rindex('/') + 1:file.rindex('.')]
+                    noise_deepfilternet(file,path)
+                    rename(path+nameFile+'_DeepFilterNet2.wav',file)
+                for file in files:
+                    print("file")
+                    print(file)
+                    recognize(file,args)
+                pass
+            # Giải thuật giảm nhiễu Noisereduce (không cố định)
+            elif noises == 'noise':
+                print("Use NoiseReduce")
+                for file in files:
+                    noise_reduce(file,file)
+                for file in files:
+                    recognize(file,args)
+            else:
+            # Không chọn giải thuật
+                # rename(path+name+'.wav',path+newname+'.wav')
+                print("Do not use reduce_noise algorithm")
+                for file in files:
+                    recognize(file,args)
+                pass
     
     
     video_name = os.path.splitext(args.video)[0]
@@ -304,50 +299,50 @@ if __name__ == '__main__':
     # Mở tệp tin và gán nội dung cho biến text
     with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read()
-        topic = get_topic(text)
-        sumamary = args.algorithm_summary
-        if sumamary:
-            if sumamary == 'lexrank':
-                path_processed_text = punctuate_text(text, args)
-                result_lexrank = lexrank_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_lexrank, args)
-            elif sumamary == 'textrank':
-                print('Use textRank')  
-                path_processed_text = punctuate_text(text, args)
-                result_textrank = textrank_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_textrank, args)
-            elif sumamary == 'lsa':
-                print('Use LSA')
-                path_processed_text = punctuate_text(text, args)
-                result_lsa = lsa_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_lsa, args)
-            elif sumamary == 'luhn':
-                print('Use LUHN')  
-                path_processed_text = punctuate_text(text, args)
-                result_luhn = luhn_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_luhn, args)
-            elif sumamary == 'edmundson':
-                print('Use Edmundson')
-                path_processed_text = punctuate_text(text, args)
-                result_edmundson = edmundson_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_edmundson, args)
-            elif sumamary == 'random':
-                print('Use random')  
-                path_processed_text = punctuate_text(text, args)
-                result_random = random_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_random, args)
-            elif sumamary == 'kl':
-                print('Use KL-sum')  
-                path_processed_text = punctuate_text(text, args)
-                result_kl = kl_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_kl, args)
-            elif sumamary == 'reduction':
-                print('Use reduction')  
-                path_processed_text = punctuate_text(text, args)
-                result_reduction = reduction_summarize(path_processed_text, args.extra_argument)
-                save_result_to_file(result_reduction, args)
-            else:
-                print('Do not use summary algorithm') 
+    topic = get_topic(text)
+    sumamary = args.algorithm_summary
+    if sumamary:
+        if sumamary == 'lexrank':
+            path_processed_text = punctuate_text(text, args)
+            result_lexrank = lexrank_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_lexrank, args)
+        elif sumamary == 'textrank':
+            print('Use textRank')  
+            path_processed_text = punctuate_text(text, args)
+            result_textrank = textrank_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_textrank, args)
+        elif sumamary == 'lsa':
+            print('Use LSA')
+            path_processed_text = punctuate_text(text, args)
+            result_lsa = lsa_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_lsa, args)
+        elif sumamary == 'luhn':
+            print('Use LUHN')  
+            path_processed_text = punctuate_text(text, args)
+            result_luhn = luhn_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_luhn, args)
+        elif sumamary == 'edmundson':
+            print('Use Edmundson')
+            path_processed_text = punctuate_text(text, args)
+            result_edmundson = edmundson_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_edmundson, args)
+        elif sumamary == 'random':
+            print('Use random')  
+            path_processed_text = punctuate_text(text, args)
+            result_random = random_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_random, args)
+        elif sumamary == 'kl':
+            print('Use KL-sum')  
+            path_processed_text = punctuate_text(text, args)
+            result_kl = kl_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_kl, args)
+        elif sumamary == 'reduction':
+            print('Use reduction')  
+            path_processed_text = punctuate_text(text, args)
+            result_reduction = reduction_summarize(path_processed_text, args.extra_argument)
+            save_result_to_file(result_reduction, args)
+        else:
+            print('Do not use summary algorithm') 
                  
 
     print('The topic of the video is :',topic)
