@@ -367,6 +367,8 @@ if __name__ == '__main__':
         with open(history_file, 'a') as file:
             count_sentence = count_sentence(video_name+'_en.txt')
             read_video_info = read_video_info(args.video)
+            if args.extra_argument == None:
+                args.extra_argument = 'none'
             content = folder+', '+args.video+', '+read_video_info+', '+args.language+', '+file_path+', '+count_sentence+', '+path_processed_text+', '+path_processed_summary_text+', '+args.algorithm_noise+', '+args.algorithm_summary+', '+args.extra_argument +', '+format(end - start)+', '+topic+', '+rouge_1_recall+', '+rouge_1_precision+', '+rouge_1_f1+', '+rouge_2_recall+', '+rouge_2_precision+', '+rouge_2_f1+', '+rouge_l_recall+', '+rouge_l_precision+', '+rouge_l_f1
             # print(content)print("Recall:", rouge_1_recall)
             # print("Precision:", rouge_1_precision)
