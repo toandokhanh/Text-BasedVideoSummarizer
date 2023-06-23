@@ -19,15 +19,15 @@ import ffmpeg
 import requests
 import soundfile as sf
 import re
-import sumy_final # sumy_final.py
-from sumy_final import lexrank_summarize
-from sumy_final import textrank_summarize
-from sumy_final import lsa_summarize
-from sumy_final import luhn_summarize
-from sumy_final import edmundson_summarize
-from sumy_final import random_summarize
-from sumy_final import reduction_summarize
-from sumy_final import kl_summarize
+import summary.sumy_final as sumy_final # sumy_final.py
+from summary.sumy_final import lexrank_summarize
+from summary.sumy_final import textrank_summarize
+from summary.sumy_final import lsa_summarize
+from summary.sumy_final import luhn_summarize
+from summary.sumy_final import edmundson_summarize
+from summary.sumy_final import random_summarize
+from summary.sumy_final import reduction_summarize
+from summary.sumy_final import kl_summarize
 from glob import glob
 from noisereduce.generate_noise import band_limited_noise
 from regex import F
@@ -38,9 +38,9 @@ from googletrans import Translator
 from gingerit.gingerit import GingerIt
 from pyvi import ViTokenizer
 from nltk.tokenize import sent_tokenize
-import handle_save_log #handle_save_log.py
-from handle_save_log import read_video_info
-from handle_save_log import count_sentence
+import handle.handle_save_log as handle_save_log #handle_save_log.py
+from handle.handle_save_log import read_video_info
+from handle.handle_save_log import count_sentence
 import accuracy
 from accuracy import calculate_ROUGE
 
