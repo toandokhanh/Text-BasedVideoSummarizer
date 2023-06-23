@@ -1,2 +1,0 @@
-Khuôn mặt trên vai của Chúa tiếp theo là chúng ta sẽ phải viết một tập tin để xác định khuôn mặt trên webcam với chúng tôi.
-Bạn có thể thấy là 200in cuối cùng tôi sẽ xác định khuôn mặt của mình trước khi tôi nhận được nó một mình.
