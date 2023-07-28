@@ -11,7 +11,7 @@ def calculate_ROUGE(reference_path, summary_path):
     with open(summary_path, 'r', encoding='utf-8') as summary_file:
         summary = summary_file.read()
 
-    scores = rouge.get_scores(summary, reference,avg=True)
+    scores = rouge.get_scores(summary, reference, avg=True)
 
     rouge_1_recall = str(scores['rouge-1']['r'])
     rouge_1_precision = str(scores['rouge-1']['p'])
@@ -26,8 +26,8 @@ def calculate_ROUGE(reference_path, summary_path):
     rouge_l_f1 = str(scores['rouge-l']['f'])
 
     return rouge_1_recall, rouge_1_precision, rouge_1_f1, rouge_2_recall, rouge_2_precision, rouge_2_f1, rouge_l_recall, rouge_l_precision, rouge_l_f1
-
-# rouge_1_recall, rouge_1_precision, rouge_1_f1, rouge_2_recall, rouge_2_precision, rouge_2_f1, rouge_l_recall, rouge_l_precision, rouge_l_f1 = calculate_ROUGE('test/noise_en_processed_text.txt', 'test/noise_en_processed_text_lexrank_summary.txt')
+# # 
+# rouge_1_recall, rouge_1_precision, rouge_1_f1, rouge_2_recall, rouge_2_precision, rouge_2_f1, rouge_l_recall, rouge_l_precision, rouge_l_f1 = calculate_ROUGE('data/en/1_en_processed_text.txt', 'data/en/1_en_processed_text_lexrank_summary.txt')
 
 
 # print("ROUGE-1:")

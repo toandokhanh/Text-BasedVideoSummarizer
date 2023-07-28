@@ -1,303 +1,302 @@
-# en
-python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary lexrank
+# # en
+# python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/1.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/2.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/3.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/4.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/5.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/6.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/7.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/8.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary lexrank
 python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary kl
-python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary lexrank
-python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary textrank
-python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary lsa
-python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary luhn
-python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary edmundson
-python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary kl
-
+# python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/9.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/10.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/11.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/12.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/13.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/14.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/15.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/16.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/17.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/18.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/19.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/20.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/21.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/22.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/23.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/24.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/25.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/26.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/27.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/28.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/29.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/30.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/31.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/32.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/33.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/34.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/35.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/36.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/37.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/38.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/39.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/40.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/41.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/42.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/43.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/44.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/45.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/46.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/47.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/48.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/49.mp4 -noise deep -summary kl
+# python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary lexrank
+# python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary textrank
+# python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary lsa
+# python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary luhn
+# python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary edmundson
+# python3 recognize_final.py -l en -video data/en/50.mp4 -noise deep -summary kl
 
