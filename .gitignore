@@ -9,7 +9,6 @@ test.py
 /tmp
 error.txt
 # handle_save_log.py
-recognize_datetime.py
 result_v1.xlsx
 ~$result_v1.xlsx
 test/
