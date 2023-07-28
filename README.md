@@ -55,7 +55,7 @@ This process helps create a concise and accurate version of the original content
 - `-summary lexrank`: Selects the text summarization algorithm to be used, in this case, "lexrank" (lexrank, textrank, lsa, luhn, random, reduction, edmundson, kl)
 - `-sentence 2`: Specifies the number of sentences desired for the summary. In this case, 2 sentences will be extracted for the summary. (yes or no)
 
-      python3 recognize_final.py -l vi -video d.mp4 -noise deep -summary lexrank -sentence 2
+      python3 recognize.py -l vi -video d.mp4 -noise deep -summary lexrank -sentence 2
 
 # References
 
