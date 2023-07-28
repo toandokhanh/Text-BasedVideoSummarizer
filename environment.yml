@@ -1,0 +1,18 @@
+name: text
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=2_gnu
+  - ca-certificates=2023.5.7=hbcca054_0
+  - icu=72.1=hcb278e6_0
+  - libgcc-ng=13.1.0=he5830b7_0
+  - libgomp=13.1.0=he5830b7_0
+  - libstdcxx-ng=13.1.0=hfd8a6a1_0
+  - libuv=1.44.2=h166bdaf_0
+  - libzlib=1.2.13=hd590300_5
+  - nodejs=18.16.1=hf52ce11_0
+  - openssl=3.1.1=hd590300_1
+  - zlib=1.2.13=hd590300_5
+prefix: /home/toandokhanh/anaconda3/envs/text
