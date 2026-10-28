@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=84.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sumy"
+version = "0.13.0+metadata.1"
+description = "Sumy 0.13.0 with an unused runtime setuptools constraint removed"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+dependencies = [
+  "breadability>=0.1.20", "docopt-ng>=0.6.3", "lxml-html-clean>=0.1.0",
+  "nltk!=3.10.1,>=3.9.1", "pycountry>=18.2.23", "requests>=2.32.4",
+]
+
+[tool.setuptools.packages.find]
+include = ["sumy*"]
+
+[tool.setuptools.package-data]
+sumy = ["data/stopwords/*.txt"]

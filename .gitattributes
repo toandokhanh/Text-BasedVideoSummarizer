@@ -1,1 +1,3 @@
 *.ipynb linguist-language=Python
+# Preserve the exact upstream library bytes, including its original whitespace.
+vendor/sumy/sumy/** -text -whitespace linguist-vendored=true

@@ -1,10 +1,11 @@
-from moviepy.editor import VideoFileClip
+import json
+import subprocess
 import nltk
 import os
 
 
 def count_sentence(file_path):
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         # Đọc nội dung từ tệp tin
         content = file.read()
 
@@ -15,7 +16,7 @@ def count_sentence(file_path):
         sentences = nltk.sent_tokenize(content)
         so_cau = len(sentences)
 
-        return str(so_tu) + ', ' + str(so_cau)
+        return str(so_tu) + ", " + str(so_cau)
 
 
 def read_video_info(filename):
@@ -25,11 +26,24 @@ def read_video_info(filename):
     """
 
     if os.path.exists(filename):
-        clip = VideoFileClip(filename)
-        duration = clip.duration
-        size = os.stat(filename).st_size / 1024 # Chuyển từ byte sang KB
-        return str(int(size)) + ', ' + str(duration)
+        probe = subprocess.run(
+            [
+                "ffprobe",
+                "-v",
+                "error",
+                "-show_entries",
+                "format=duration",
+                "-of",
+                "json",
+                filename,
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        duration = float(json.loads(probe.stdout)["format"]["duration"])
+        size = os.stat(filename).st_size / 1024  # Chuyển từ byte sang KB
+        return str(int(size)) + ", " + str(duration)
     else:
         print("Không tìm thấy file!")
-
-
