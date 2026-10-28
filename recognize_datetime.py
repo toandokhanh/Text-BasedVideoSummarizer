@@ -1,9 +1,11 @@
+import subprocess
+import shlex
 # nthai: modify 02/05/2023
 # dktoan: modify 09/05/2023 update giam nhieu
 # dktoan: modify 15/05/2023 update phan loai chu de bang underthesea
 # dktoan: modify 03/06/2023 fix bug
-# dktoan: modify 07/06/2023 update cac giai thuat tom tat 
-# dktoan: modify 08/06/2023 fix bug google_translate 
+# dktoan: modify 07/06/2023 update cac giai thuat tom tat
+# dktoan: modify 08/06/2023 fix bug google_translate
 # original soucre: https://github.com/nestyme/Subtitles-generator
 
 import time
@@ -67,7 +69,7 @@ def recognize(wav_filename, args):
 
     r = sr.Recognizer()
     with sr.AudioFile('tmp/tmp_32.wav') as source:
-        audio = r.record(source)  
+        audio = r.record(source)
 
     print('audiofile loaded')
 
@@ -77,18 +79,18 @@ def recognize(wav_filename, args):
     except sr.UnknownValueError:
         print("cannot understand audio")
         result = ''
-        
+
         # Xóa file wav gốc
         os.remove(wav_filename)
- 
+
     video_name = os.path.splitext(args.video)[0]
     with open(video_name+'_'+folder+'_'+args.language+ '.txt', 'w', encoding='utf-8') as f:
         f.write(' {}'.format(result))
-    # print(result) 
+    # print(result)
 
 def get_audio(video):
-    os.system('ffmpeg -y  -threads 4 -i {} -f wav -ab 192000 -vn {}'.format(video, 'tmp/current.wav'))
-    
+    subprocess.run(shlex.split('ffmpeg -y  -threads 4 -i {} -f wav -ab 192000 -vn {}'.format(video, 'tmp/current.wav')), check=True, timeout=1800)
+
 # def get_audio(video, name_file):
 #     os.system('ffmpeg -y  -threads 4\
 #  -i {} -f wav -ab 192000 -vn {}'.format(video, name_file))
@@ -101,12 +103,12 @@ def split_into_frames(audiofile, args, folder='samples'):
         duration = librosa.get_duration(y=data, sr=sr)
     except:
         duration = librosa.get_duration(audiofile)
-    
+
     #print('video duration, hours: {}'.format(duration/3600))
     print('video duration, seconds: {}'.format(duration))
 
     # tach moi file dai tam 50s
-    
+
     for i in range(0,int(duration-1),args.step_time):
         tmp_batch = data[(i)*sr:sr*(i+args.step_time)]
         # librosa.output.write_wav('samples/{}.wav'.format(chr(int(i/50)+65)), tmp_batch, sr)
@@ -132,10 +134,10 @@ def noise_reduce(file,file_out):
     print('Đang giảm nhiễu với thuật toán noise_reduce!')
 
 def noise_deepfilternet(file,file_out):
-    os.system('deepFilter {} -o {}'.format(file,file_out))
+    subprocess.run(shlex.split('deepFilter {} -o {}'.format(file, file_out)), check=True, timeout=1800)
     print('Đang giảm nhiễu với thuật toán noise_deepfilternet!')
 
-def rename(filename,newname): 
+def rename(filename,newname):
     os.rename(filename, newname)
 
 def punctuate_text(text, args):
@@ -149,7 +151,7 @@ def punctuate_text(text, args):
         # text = translation.text
         translated_text = translate_text(text, src=args.language, dest="en")
         text = translated_text.replace(",", " ").replace(".", " ")
-        
+
 
     # Gọi API add các dấu chấm câu
     url = "http://bark.phon.ioc.ee/punctuator"
@@ -177,7 +179,7 @@ def punctuate_text(text, args):
     # for sentence in sentences:
     #     corrected_sentence = ViTokenizer.tokenize(sentence)
     #     corrected_sentences.append(corrected_sentence)
-    
+
     filepath = os.path.splitext(args.video)[0]
     with open( filepath+'_'+folder+'_'+args.algorithm_summary+'_processed_text.txt', 'w', encoding='utf-8') as file:
         for sentence in sentences:
@@ -197,7 +199,7 @@ def get_topic(text):
         if os.path.exists(video_name + '_sub_vi.txt'):
             print("Save the sub-vi file successfully")
         else:
-            print("Save the sub-vi file failed") 
+            print("Save the sub-vi file failed")
     topic = '_'.join(classify(text))
     return topic
 
@@ -234,7 +236,7 @@ def translate_text(text, src, dest):
 
 if __name__ == '__main__':
     from time import gmtime, strftime
-    time_text = str(strftime("%Y%m%d_%H%M%S", gmtime())) 
+    time_text = str(strftime("%Y%m%d_%H%M%S", gmtime()))
     folder = time_text
     # os.mkdir(folder)
     # os.mkdir(folder)
@@ -249,11 +251,11 @@ if __name__ == '__main__':
 
     # convert to audio file current
     split_into_frames('tmp/current.wav',args,folder)
-    
+
     # tra ve cac file wav nam trong thu muc tmp
     # files = sorted(glob('tmp/*.wav'))
     #files = sorted(glob('samples/*.wav'))
-    
+
     # files = sorted(glob( folder + '/*.wav'))
     files = sorted(glob( folder + '/*.wav'), key = os.path.getmtime)
     print(files)
@@ -287,10 +289,10 @@ if __name__ == '__main__':
             print("Do not use reduce_noise algorithm")
             for file in files:
                 recognize(file,args)
-            
+
             pass
-    
-    
+
+
     video_name = os.path.splitext(args.video)[0]
     file_path = video_name+'_'+folder +'_'+args.language+'.txt'
 
@@ -305,7 +307,7 @@ if __name__ == '__main__':
                 result_lexrank = lexrank_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_lexrank, args)
             elif sumamary == 'textrank':
-                print('Use textRank')  
+                print('Use textRank')
                 path_processed_text = punctuate_text(text, args)
                 result_textrank = textrank_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_textrank, args)
@@ -315,7 +317,7 @@ if __name__ == '__main__':
                 result_lsa = lsa_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_lsa, args)
             elif sumamary == 'luhn':
-                print('Use LUHN')  
+                print('Use LUHN')
                 path_processed_text = punctuate_text(text, args)
                 result_luhn = luhn_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_luhn, args)
@@ -325,23 +327,23 @@ if __name__ == '__main__':
                 result_edmundson = edmundson_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_edmundson, args)
             elif sumamary == 'random':
-                print('Use random')  
+                print('Use random')
                 path_processed_text = punctuate_text(text, args)
                 result_random = random_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_random, args)
             elif sumamary == 'kl':
-                print('Use KL-sum')  
+                print('Use KL-sum')
                 path_processed_text = punctuate_text(text, args)
                 result_kl = kl_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_kl, args)
             elif sumamary == 'reduction':
-                print('Use reduction')  
+                print('Use reduction')
                 path_processed_text = punctuate_text(text, args)
                 result_reduction = reduction_summarize(path_processed_text, args.extra_argument)
                 save_result_to_file(result_reduction, args)
             else:
-                print('Do not use summary algorithm') 
-                 
+                print('Do not use summary algorithm')
+
 
     print('The topic of the video is :',topic)
     end = time.time()
@@ -349,7 +351,7 @@ if __name__ == '__main__':
     if args.algorithm_summary == 'no':
         path_processed_text = 'None, None, None'
         path_summary_text = 'None, None, None'
-    else:    
+    else:
         path_processed_text = video_name+'_'+folder+'_'+args.algorithm_summary+'_processed_text.txt'
         count_sentence_processed_text = count_sentence(path_processed_text)
         path_processed_text = path_processed_text+', '+count_sentence_processed_text
@@ -366,6 +368,6 @@ if __name__ == '__main__':
             file.write(f'{content} \n')
 
     # Đã lưu lịch sử chạy code thành công
-    
+
     print('elapsed time: {}'.format(end - start))
     # os.system('rm tmp/*')

@@ -3,6 +3,7 @@ import os
 from rouge import Rouge
 
 def calculate_ROUGE(reference_path, summary_path):
+    """Compute overlap against the supplied reference; source text is not a human summary reference."""
     rouge = Rouge()
 
     with open(reference_path, 'r', encoding='utf-8') as reference_file:
@@ -26,7 +27,7 @@ def calculate_ROUGE(reference_path, summary_path):
     rouge_l_f1 = str(scores['rouge-l']['f'])
 
     return rouge_1_recall, rouge_1_precision, rouge_1_f1, rouge_2_recall, rouge_2_precision, rouge_2_f1, rouge_l_recall, rouge_l_precision, rouge_l_f1
-# # 
+# #
 # rouge_1_recall, rouge_1_precision, rouge_1_f1, rouge_2_recall, rouge_2_precision, rouge_2_f1, rouge_l_recall, rouge_l_precision, rouge_l_f1 = calculate_ROUGE('data/en/1_en_processed_text.txt', 'data/en/1_en_processed_text_lexrank_summary.txt')
 
 
@@ -42,3 +43,12 @@ def calculate_ROUGE(reference_path, summary_path):
 # print("Recall:", rouge_l_recall)
 # print("Precision:", rouge_l_precision)
 # print("F1-score:", rouge_l_f1)
+
+if __name__ == '__main__':
+    import json
+    parser = argparse.ArgumentParser(description='Evaluate a summary against an independently authored reference')
+    parser.add_argument('--reference', required=True, help='Human-authored reference summary')
+    parser.add_argument('--summary', required=True, help='Generated summary')
+    args = parser.parse_args()
+    with open(args.reference, encoding='utf-8') as ref, open(args.summary, encoding='utf-8') as hyp:
+        print(json.dumps(Rouge().get_scores(hyp.read(), ref.read(), avg=True), indent=2))

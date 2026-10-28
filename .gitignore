@@ -1,11 +1,3 @@
-lexRank.py
-requirements.txt
-sumary.py
-summary.py
-test_sumy.py
-testgpt2.py
-textRank.py
-test.py
 /tmp
 error.txt
 # handle_save_log.py
@@ -14,3 +6,19 @@ result_v1.xlsx
 test/
 data/
 result/
+
+# Local configuration and generated artifacts
+.env
+.env.*
+!.env.example
+!.env.*.example
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+.venv/
+venv/
+node_modules/
+*.log
+storage/upload-owners/
